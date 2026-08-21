@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam</title>
+
+<!--
+  ============================================================
+  PAANO I-UPDATE ANG SITE NA ITO (read this first!)
+  ============================================================
+
+  1. Para magdagdag ng POEM:
+     Hanapin ang "const poems = [" sa baba (Ctrl+F).
+     Magdagdag ng bagong entry sa loob ng [ ] tulad nito:
+
+     {
+       title: "Pamagat ng Tula",
+       date: "Agosto 2026",
+       body: `Isulat mo dito ang buong tula.
+Gamitin ang Enter para sa bagong linya.
+
+Blangkong linya = bagong stanza.`
+     },
+
+  2. Para magdagdag ng LETTER:
+     Hanapin ang "const letters = [" sa baba.
+     Parehong format lang, dagdag ka lang ng entry.
+     Meron ding "opening" field (hal. "Dear Sam,") kung gusto mo.
+
+  3. Para baguhin ang TITLE / EPIGRAPH sa taas ng site:
+     Hanapin ang "const siteConfig = {" sa baba.
+
+  4. Bawat entry ay parang sobre (envelope) na may pusong seal.
+     Click sa sobre para "mabuksan" ito at lumabas yung papel
+     na may laman ng tula/liham. Click ulit para isara.
+
+  5. I-save mo lang ang file pagkatapos mag-edit, tapos i-open
+     ulit sa browser (o i-upload sa hosting mo) para makita
+     ang updates.
+
+  Wala kang kailangang tools bukod sa isang text editor.
+  ============================================================
+-->
+
+<style>
+  :root {
+    --paper: #f5f2ec;
+    --paper-alt: #efeade;
+    --paper-white: #fbfaf6;
+    --ink: #2b2622;
+    --ink-soft: #5c5650;
+    --accent: #7c5a5f;
+    --accent-deep: #4a3438;
+    --line: #ddd2c2;
+    --line-soft: #e8e1d3;
+
+    --font-display: "Work Sans", -apple-system, sans-serif;
+    --font-body: "Source Serif 4", Georgia, serif;
+    --font-ui: "Inter", -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 10px 16px;
+    z-index: 200;
+    font-family: var(--font-ui);
+    font-size: 14px;
+  }
+  .skip-link:focus { left: 12px; top: 12px; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 6vw;
+    background: rgba(245, 242, 236, 0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+  }
+
+  nav.nav-links {
+    display: flex;
+    gap: 28px;
+    font-family: var(--font-ui);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  nav.nav-links a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    padding-bottom: 4px;
+    border-bottom: 1px solid transparent;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  nav.nav-links a:hover,
+  nav.nav-links a:focus-visible {
+    color: var(--accent-deep);
+    border-color: var(--accent);
+  }
+
+  /* offset anchored sections so the sticky nav doesn't cover them */
+  #home, #poems, #letters {
+    scroll-margin-top: 84px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 6vw;
+    max-width: 900px;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(48px, 9vw, 96px);
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .hero-underline {
+    width: 120px;
+    height: 14px;
+    margin: 18px 0 26px 4px;
+  }
+  .hero-underline path {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .hero-sub {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: var(--ink-soft);
+    max-width: 40ch;
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.entries {
+    padding: 4vw 6vw 8vw;
+    border-top: 1px solid var(--line);
+    max-width: 1000px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 8px;
+  }
+
+  h2.section-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 4vw, 40px);
+    margin-bottom: 44px;
+  }
+
+  .entries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 28px 24px;
+    align-items: start;
+  }
+
+  /* ---------- ENVELOPE (collapsible, closed state) ---------- */
+  .envelope {
+    position: relative;
+  }
+
+  .envelope-summary {
+    list-style: none;
+    position: relative;
+    height: 128px;
+    border-radius: 8px;
+    background: var(--paper-alt);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  }
+  .envelope-summary::-webkit-details-marker { display: none; }
+
+  .envelope-summary:hover,
+  .envelope-summary:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 4px 14px rgba(74, 52, 56, 0.12);
+    transform: translateY(-2px);
+  }
+
+  /* envelope flap (top triangle) */
+  .envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    background: var(--line-soft);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transition: transform 0.45s ease, opacity 0.3s ease;
+    z-index: 2;
+  }
+  .envelope[open] .envelope-flap {
+    transform: rotateX(180deg);
+    opacity: 0.5;
+  }
+
+  /* side pocket fold lines, purely decorative */
+  .envelope-summary::before,
+  .envelope-summary::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 55%;
+    height: 60px;
+    border-bottom: 1px solid var(--line);
+    z-index: 1;
+  }
+  .envelope-summary::before {
+    left: 0;
+    border-right: 1px solid var(--line);
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+  }
+  .envelope-summary::after {
+    right: 0;
+    border-left: 1px solid var(--line);
+    clip-path: polygon(100% 100%, 0 100%, 100% 0);
+  }
+
+  /* wax seal with heart */
+  .envelope-seal {
+    position: absolute;
+    top: 58px;
+    left: 50%;
+    width: 34px;
+    height: 34px;
+    transform: translate(-50%, -50%);
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    z-index: 3;
+    transition: opacity 0.25s ease, transform 0.3s ease;
+  }
+  .envelope-seal svg { width: 16px; height: 16px; fill: var(--paper-white); }
+  .envelope[open] .envelope-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+
+  .envelope-label {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+    padding: 0 12px;
+  }
+
+  .entry-date {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .envelope-hint {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    color: var(--ink-soft);
+    opacity: 0.7;
+    margin-top: 2px;
+    display: block;
+  }
+
+  /* ---------- PAPER (revealed content) ---------- */
+  .paper-wrap {
+    margin-top: -6px;
+    padding-top: 14px;
+  }
+
+  .paper {
+    background: var(--paper-white);
+    border: 1px solid var(--line-soft);
+    border-radius: 6px;
+    padding: 22px 20px;
+    box-shadow: 0 8px 20px rgba(74, 52, 56, 0.1);
+    transform: translateY(-10px) rotate(-0.6deg);
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .paper.show {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+
+  .entry-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(17px, 2.2vw, 20px);
+    color: var(--ink);
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .entry-body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--ink);
+    white-space: pre-wrap;
+  }
+
+  .letter-open {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .empty-note {
+    font-family: var(--font-ui);
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-style: italic;
+    grid-column: 1 / -1;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 5vw 6vw 6vw;
+    border-top: 1px solid var(--line);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  #back-to-top {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-family: var(--font-ui);
+    font-size: 13px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+  #back-to-top:hover, #back-to-top:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent-deep);
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 640px) {
+    header.nav { padding: 14px 5vw; }
+    nav.nav-links { gap: 16px; font-size: 11px; }
+    .hero { min-height: 60vh; padding: 8vw 6vw; }
+    section.entries { padding: 10vw 6vw; }
+    .entries-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Diretso sa content</a>
+
+<header class="nav">
+  <div class="nav-name" id="nav-title">Sam</div>
+  <nav class="nav-links" aria-label="Pangunahing navigation">
+    <a href="#home">Home</a>
+    <a href="#poems">Poems</a>
+    <a href="#letters">Letters</a>
+  </nav>
+</header>
+
+<main id="main">
+  <section class="hero" id="home">
+    <h1 class="hero-title" id="hero-title">Sam</h1>
+    <svg class="hero-underline" viewBox="0 0 120 14" aria-hidden="true">
+      <path d="M2 8 Q 20 2, 38 8 T 74 8 T 110 8" />
+    </svg>
+    <p class="hero-sub" id="hero-sub">a quiet place for the words I write and never send.</p>
+  </section>
+
+  <section class="entries" id="poems">
+    <p class="eyebrow">Poems</p>
+    <h2 class="section-title">Mga tula</h2>
+    <div class="entries-grid" id="poems-list"></div>
+  </section>
+
+  <section class="entries" id="letters">
+    <p class="eyebrow">Letters</p>
+    <h2 class="section-title">Mga liham</h2>
+    <div class="entries-grid" id="letters-list"></div>
+  </section>
+</main>
+
+<footer>
+  <span id="last-updated">Huling na-update: Agosto 2026</span>
+  <button id="back-to-top">Pataas ↑</button>
+</footer>
+
+<script>
+  /* ============================================================
+     I-EDIT MO DITO ANG CONTENT NG SITE
+     ============================================================ */
+
+  const siteConfig = {
+    title: "Sam",
+    epigraph: "a quiet place for the words I write and never send.",
+    lastUpdated: "Agosto 2026"
+  };
+
+  // Idagdag ang mga tula dito. Puwedeng maraming entries.
+  const poems = [
+    {
+      title: "untitled",
+      date: "Agosto 2026",
+      body: `sa tuwing ika'y aking nakikita
+hindi ko maintindihan ang aking nadarama
+tila ang puso ay hinaharana
+sa tuwing ika'y aking nakikita, sinta.
+
+tila nga ako'y napana na ni kupido
+sapagkat ako sayo'y sigurado
+ang bawat minuto ng buhay ko'y ilalaan sa'yo
+iyan ay pangako, mahal ko.`
+    },
+    // Halimbawa / placeholder — palitan mo ito ng sarili mong tula:
+    // {
+    //   title: "Pamagat",
+    //   date: "Agosto 2026",
+    //   body: `Unang linya ng tula.
+    // Susunod na linya.
+    //
+    // Bagong stanza dito.`
+    // },
+  ];
+
+  // Idagdag ang mga letter dito.
+  const letters = [
+    // Halimbawa / placeholder — palitan mo ito ng sarili mong liham:
+    // {
+    //   title: "Untitled",
+    //   date: "Agosto 2026",
+    //   opening: "Dear Sam,",
+    //   body: `Isulat mo dito ang laman ng liham.`
+    // },
+  ];
+
+  /* ============================================================
+     WALANG KAILANGANG BAGUHIN SA IBABA NITO
+     ============================================================ */
+
+  document.getElementById("nav-title").textContent = siteConfig.title;
+  document.getElementById("hero-title").textContent = siteConfig.title;
+  document.getElementById("hero-sub").textContent = siteConfig.epigraph;
+  document.getElementById("last-updated").textContent = "Huling na-update: " + siteConfig.lastUpdated;
+  document.title = siteConfig.title;
+
+  const heartSvg = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>';
+
+  function renderEntries(list, containerId, isLetter) {
+    const container = document.getElementById(containerId);
+    if (!list.length) {
+      const note = document.createElement("p");
+      note.className = "empty-note";
+      note.textContent = isLetter
+        ? "Wala pang liham dito. I-edit ang \"letters\" array sa script para magdagdag."
+        : "Wala pang tula dito. I-edit ang \"poems\" array sa script para magdagdag.";
+      container.appendChild(note);
+      return;
+    }
+
+    list.forEach(function (item) {
+      const wrap = document.createElement("div");
+
+      const entry = document.createElement("details");
+      entry.className = "envelope";
+
+      const summary = document.createElement("summary");
+      summary.className = "envelope-summary";
+      summary.innerHTML =
+        '<span class="envelope-flap" aria-hidden="true"></span>' +
+        '<span class="envelope-seal" aria-hidden="true">' + heartSvg + '</span>' +
+        '<span class="envelope-label">' +
+          '<span class="entry-date">' + (item.date || "") + '</span>' +
+          '<span class="envelope-hint">click to open</span>' +
+        '</span>';
+      entry.appendChild(summary);
+
+      const paperWrap = document.createElement("div");
+      paperWrap.className = "paper-wrap";
+
+      const paper = document.createElement("div");
+      paper.className = "paper";
+
+      const title = document.createElement("span");
+      title.className = "entry-title";
+      title.textContent = item.title || "";
+      paper.appendChild(title);
+
+      if (isLetter && item.opening) {
+        const opening = document.createElement("span");
+        opening.className = "letter-open";
+        opening.textContent = item.opening;
+        paper.appendChild(opening);
+      }
+
+      const body = document.createElement("p");
+      body.className = "entry-body";
+      body.textContent = item.body || "";
+      paper.appendChild(body);
+
+      paperWrap.appendChild(paper);
+      entry.appendChild(paperWrap);
+      wrap.appendChild(entry);
+      container.appendChild(wrap);
+
+      // animate the paper sliding/fading in after the details element opens
+      entry.addEventListener("toggle", function () {
+        if (entry.open) {
+          requestAnimationFrame(function () {
+            paper.classList.add("show");
+          });
+        } else {
+          paper.classList.remove("show");
+        }
+      });
+    });
+  }
+
+  renderEntries(poems, "poems-list", false);
+  renderEntries(letters, "letters-list", true);
+
+  document.getElementById("back-to-top").addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+</body>
+</html>
