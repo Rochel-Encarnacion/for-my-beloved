@@ -466,9 +466,7 @@ Blangkong linya = bagong stanza.`
 </footer>
 
 <script>
-  /* ============================================================
-     I-EDIT MO DITO ANG CONTENT NG SITE
-     ============================================================ */
+  
 
   const siteConfig = {
     title: "Sam",
@@ -476,7 +474,6 @@ Blangkong linya = bagong stanza.`
     lastUpdated: "August 2026"
   };
 
-  // Idagdag ang mga tula dito. Puwedeng maraming entries.
   const poems = [
     {
       title: "untitled",
@@ -817,7 +814,6 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
         
   ];
 
-  // Idagdag ang mga letter dito.
   const letters = [
     { 
       title: "1",
@@ -876,31 +872,44 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
  `    
     },
       { 
-      title: "9",
+      title: "8",
       date: "From the Archives",
       opening: "Dear Diary",
       body: ` Hala huhu may sakit siya? sana okay lang siya TvT sana gumaling siya agad TvT get well soon po!
  `    
     },
       { 
-      title: "10",
+      title: "9",
       date: "From the Archives",
       opening: "Dear Diary",
-      body: ` 
+      body: ` Ayunnnn nag chat na siya sa gc hindi nga siya masyadong active sa fb kasi ngayon lang ako na-accept BWUHAHAHAHHA
+      tama nga ako aasarin nila ako kay redge anuba HAHAHAHHA wth dat pala di ko na pinagtripan si redge, naaano kasi ako na siya
+      i-dog show ko e kazi feel ko magagalit siya or what
  `    
     },
       { 
-      title: "11",
+      title: "10",
       date: "From the Archives",
       opening: "Dear Diary",
-      body: ` 
+      body: ` HALA GUYS JOKER SIYA WBUAHHAHAHHA tawang-tawa ako sa jokes niya omggggg BWUAHAHHAH eggnore on top tayo guys. 
+      So mali pala first impression ko kasi jokerist siya tapos masaya siya kasama
  `    
     },
        { 
+      title: "11",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Grabeeeee nakakahiya huhu feel ko pinipigilan niya tawa niya kanina kasi ganito, sabi ni Thea lakasan ko raw fan
+      edi ako lapit naman for adjustment tapos sabi ko "nasaan? di ko makita" sabi niya ayan oh bat kasi sa taas ka nakatingin tas natawa naman ako
+      NAKAKAHIYA HUHU WTH ay tapos may interaction kami kanina kasi akala niya nanghihingi ako food kay redge TvT
+ `    
+    },
+    { 
       title: "12",
       date: "From the Archives",
       opening: "Dear Diary",
-      body: ` 
+      body: ` HOY ME LANG BA PERO ANG POGI NIYA HUHUHUHUHUHUHUHUHUHU pero ano a galing niya mag bigay ng assurance like legit huhu
+      andddd wala raw siya ka-lowkey tyL (GURL BWUAHAHAHHA) pero kasi ano ba di nga si redge crush ko, ikaw nga (di pa totally pero getting there)
  `    
     }
            
@@ -912,7 +921,7 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
   document.getElementById("nav-title").textContent = siteConfig.title;
   document.getElementById("hero-title").textContent = siteConfig.title;
   document.getElementById("hero-sub").textContent = siteConfig.epigraph;
-  document.getElementById("last-updated").textContent = "Huling na-update: " + siteConfig.lastUpdated;
+  document.getElementById("last-updated").textContent = "Last Updated: " + siteConfig.lastUpdated;
   document.title = siteConfig.title;
 
   const heartSvg = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>';
@@ -974,7 +983,7 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
       wrap.appendChild(entry);
       container.appendChild(wrap);
 
-      // animate the paper sliding/fading in after the details element opens
+      
       entry.addEventListener("toggle", function () {
         if (entry.open) {
           requestAnimationFrame(function () {
