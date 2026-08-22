@@ -4,45 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sam</title>
-
-<!--
-  ============================================================
-  PAANO I-UPDATE ANG SITE NA ITO (read this first!)
-  ============================================================
-
-  1. Para magdagdag ng POEM:
-     Hanapin ang "const poems = [" sa baba (Ctrl+F).
-     Magdagdag ng bagong entry sa loob ng [ ] tulad nito:
-
-     {
-       title: "Pamagat ng Tula",
-       date: "Agosto 2026",
-       body: `Isulat mo dito ang buong tula.
-Gamitin ang Enter para sa bagong linya.
-
-Blangkong linya = bagong stanza.`
-     },
-
-  2. Para magdagdag ng LETTER:
-     Hanapin ang "const letters = [" sa baba.
-     Parehong format lang, dagdag ka lang ng entry.
-     Meron ding "opening" field (hal. "Dear Sam,") kung gusto mo.
-
-  3. Para baguhin ang TITLE / EPIGRAPH sa taas ng site:
-     Hanapin ang "const siteConfig = {" sa baba.
-
-  4. Bawat entry ay parang sobre (envelope) na may pusong seal.
-     Click sa sobre para "mabuksan" ito at lumabas yung papel
-     na may laman ng tula/liham. Click ulit para isara.
-
-  5. I-save mo lang ang file pagkatapos mag-edit, tapos i-open
-     ulit sa browser (o i-upload sa hosting mo) para makita
-     ang updates.
-
-  Wala kang kailangang tools bukod sa isang text editor.
-  ============================================================
--->
+<title>For my beloved</title>
 
 <style>
   :root {
@@ -101,7 +63,7 @@ Blangkong linya = bagong stanza.`
     outline-offset: 3px;
   }
 
-  /* ---------- NAV ---------- */
+  
   header.nav {
     position: sticky;
     top: 0;
@@ -144,12 +106,12 @@ Blangkong linya = bagong stanza.`
     border-color: var(--accent);
   }
 
-  /* offset anchored sections so the sticky nav doesn't cover them */
+  
   #home, #poems, #letters {
     scroll-margin-top: 84px;
   }
 
-  /* ---------- HERO ---------- */
+  
   .hero {
     min-height: 78vh;
     display: flex;
@@ -187,7 +149,7 @@ Blangkong linya = bagong stanza.`
     max-width: 40ch;
   }
 
-  /* ---------- SECTIONS ---------- */
+  
   section.entries {
     padding: 4vw 6vw 8vw;
     border-top: 1px solid var(--line);
@@ -217,7 +179,7 @@ Blangkong linya = bagong stanza.`
     align-items: start;
   }
 
-  /* ---------- ENVELOPE (collapsible, closed state) ---------- */
+  
   .envelope {
     position: relative;
   }
@@ -242,7 +204,7 @@ Blangkong linya = bagong stanza.`
     transform: translateY(-2px);
   }
 
-  /* envelope flap (top triangle) */
+  
   .envelope-flap {
     position: absolute;
     top: 0;
@@ -260,7 +222,7 @@ Blangkong linya = bagong stanza.`
     opacity: 0.5;
   }
 
-  /* side pocket fold lines, purely decorative */
+  
   .envelope-summary::before,
   .envelope-summary::after {
     content: "";
@@ -282,7 +244,7 @@ Blangkong linya = bagong stanza.`
     clip-path: polygon(100% 100%, 0 100%, 100% 0);
   }
 
-  /* wax seal with heart */
+  
   .envelope-seal {
     position: absolute;
     top: 58px;
@@ -333,7 +295,7 @@ Blangkong linya = bagong stanza.`
     display: block;
   }
 
-  /* ---------- PAPER (revealed content) ---------- */
+  
   .paper-wrap {
     margin-top: -6px;
     padding-top: 14px;
@@ -386,7 +348,7 @@ Blangkong linya = bagong stanza.`
     grid-column: 1 / -1;
   }
 
-  /* ---------- FOOTER ---------- */
+  
   footer {
     padding: 5vw 6vw 6vw;
     border-top: 1px solid var(--line);
@@ -415,7 +377,7 @@ Blangkong linya = bagong stanza.`
     color: var(--accent-deep);
   }
 
-  /* ---------- RESPONSIVE ---------- */
+  
   @media (max-width: 640px) {
     header.nav { padding: 14px 5vw; }
     nav.nav-links { gap: 16px; font-size: 11px; }
@@ -911,7 +873,147 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
       body: ` HOY ME LANG BA PERO ANG POGI NIYA HUHUHUHUHUHUHUHUHUHU pero ano a galing niya mag bigay ng assurance like legit huhu
       andddd wala raw siya ka-lowkey tyL (GURL BWUAHAHAHHA) pero kasi ano ba di nga si redge crush ko, ikaw nga (di pa totally pero getting there)
  `    
-    }
+    },
+    { 
+      title: "13",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Para-paraan talaga ako e, sabi ko kung nahihiya siya sa ibang officers sakin siya mag pm
+      BWUWHSHSAHAH AYAN MAY CONVO NA KAMI kaso ano irereply? nag heart react nalang ako huhu TvT
+ `    
+    },
+    { 
+      title: "14",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` NAG FIRST MOVE SIYA NAG FIRST MOVE SIYA WUAHAHAH notes sa chem heueheueheu U ASKED THE RIGHT PERSON
+      Sam naman TvT sayo talaga ako attracted dati pa, pwede ba ikaw nalang magpabarya sakin TvT
+ `    
+    },
+    { 
+      title: "15",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Yung notes ko na "makikita na siya bukas" IT IS MEANT FOR YOU SAM NOT FOR REDGEEEE
+ `    
+    },
+    { 
+      title: "16",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Hindi siya yung gusto kong makita okayyy, ikaw nga huhu tsaka di ka naman taga-Apalit e :<
+ `    
+    },
+    { 
+      title: "17",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` AYUN TAGA UE RECTO TvT, iz diz a sign to move on huhu wth :<
+ `    
+    },
+    { 
+      title: "18",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` "bat ba di alam ng mga babae gusto nila?" I KNOW BRO I KNOWWW
+      alam ko ngang ikaw gusto ko e hayzt
+ `    
+    },
+    { 
+      title: "19",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` "may gf ata si redge" OKAY LANG DI NAMAN SIYA YUNG CRUSH KO ANO BA BWUHAHSDSHJSHS TT
+ `    
+    },
+    { 
+      title: "20",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` "Ma'am treasurer" OOOOO I LOVE THAT HUHU 
+ `    
+    },
+    { 
+      title: "21",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` "Okay lang ba if vm ko siya? mas madali kasi sya explain" 
+      SAM GO AHEAD, don't you know how much I want to hear your voie? TvT
+      Favorite sound ko kaya boses mo
+ `    
+    },
+    { 
+      title: "22",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` "Happy Birthday" THANK YOU PO, sana aware ka na ikaw birtday wish ko BWUAHASHJHJA WTH
+ `    
+    },
+    { 
+      title: "23",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Nag drunk chat ako? WTH IS TASHORT AND TALONG nakakahiya WHAT THE HELLY MAMA TvT
+ `    
+    },
+    { 
+      title: "24",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Hala huhu sorry sam, it's all a misunderstanding NOOOOO huhuhu what the hell did I do?
+ `    
+    },
+    { 
+      title: "25",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` I'm back unti-unti na kaming nagiging close ng super BWUHAJSGSH nakakabiruan ko na siya
+      and I am slowly knowing his hobbies pero kasabay non narerealize ko rin na unti-unti na pala talaga akong nahuhulog
+      and nalalaman ko rin na parang out of my league siya huhu
+ `    
+    },
+    { 
+      title: "26",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Me lang baaaa ang pogi niya lalo lately huhu, he is very moreno huhu i rlly like everything about him TvT
+ `    
+    },
+    { 
+      title: "27",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: `
+ `    
+    },
+    { 
+      title: "28",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` 
+ `    
+    },
+    { 
+      title: "29",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` 
+ `    
+    },
+    { 
+      title: "30",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` 
+ `    
+    },
+    { 
+      title: "31",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` 
+ `    
+    },
            
     
   ];
@@ -932,8 +1034,8 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
       const note = document.createElement("p");
       note.className = "empty-note";
       note.textContent = isLetter
-        ? "Wala pang liham dito. I-edit ang \"letters\" array sa script para magdagdag."
-        : "Wala pang tula dito. I-edit ang \"poems\" array sa script para magdagdag.";
+        ? "placeholder lang itech ate q. Need i-edit ang \"letters\" para lumabaz kaartehan mong envelope envelope"
+        : "placeholder lang itech ate q wahahaahha omfg k. Need i-edit ang \"poems\" para sa envelope mo";
       container.appendChild(note);
       return;
     }
