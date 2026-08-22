@@ -392,7 +392,7 @@
 <a href="#main" class="skip-link">Diretso sha dpat sa content</a>
 
 <header class="nav">
-  <div class="nav-name" id="nav-title">For my beloved</div>
+  <div class="nav-name" id="nav-title">my beloved</div>
   <nav class="nav-links" aria-label="Primary navigation">
     <a href="#home">Home</a>
     <a href="#poems">Poems</a>
@@ -1094,11 +1094,11 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
 
   
 
-  document.getElementById("nav-title").textContent = siteconfig.title;
+  document.getElementById("nav-title").textContent = siteConfig.title;
   document.getElementById("hero-title").textContent = siteconfig.title;
   document.getElementById("hero-sub").textContent = siteConfig.epigraph;
   document.getElementById("last-updated").textContent = "Last Updated: " + siteConfig.lastUpdated;
-  document.title = my beloved;
+  document.title = siteConfig.title;
 
   const heartSvg = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>';
 
