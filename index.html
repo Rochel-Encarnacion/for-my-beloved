@@ -366,6 +366,283 @@
     color: var(--accent-deep);
   }
 
+  body.entrance-active { overflow: hidden; }
+
+  .entrance-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    background: var(--paper);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease, visibility 0.7s ease;
+  }
+
+  .entrance-overlay.is-leaving {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .entrance-stage {
+    width: min(90vw, 620px);
+    text-align: center;
+  }
+
+  .entrance-note {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .entrance-overlay.is-ready .entrance-note {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .big-envelope-wrap {
+    width: min(82vw, 560px);
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(22px) scale(0.96);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.2,.8,.2,1);
+  }
+
+  .entrance-overlay.is-ready .big-envelope-wrap {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .big-envelope {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.55 / 1;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper-alt);
+    box-shadow: 0 22px 60px rgba(74, 52, 56, 0.14);
+    cursor: pointer;
+    overflow: hidden;
+    isolation: isolate;
+    transform: translateY(0);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .big-envelope:hover,
+  .big-envelope:focus-visible {
+    transform: translateY(-5px);
+    box-shadow: 0 28px 68px rgba(74, 52, 56, 0.19);
+  }
+
+  .big-envelope::before,
+  .big-envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 72%;
+    height: 72%;
+    border-bottom: 1px solid var(--line);
+    z-index: 1;
+  }
+
+  .big-envelope::before {
+    left: 0;
+    border-right: 1px solid var(--line);
+    clip-path: polygon(0 100%, 100% 100%, 0 0);
+  }
+
+  .big-envelope::after {
+    right: 0;
+    border-left: 1px solid var(--line);
+    clip-path: polygon(100% 100%, 0 100%, 100% 0);
+  }
+
+  .big-envelope-flap {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 54%;
+    background: var(--line-soft);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transition: transform 0.85s cubic-bezier(.2,.7,.2,1), opacity 0.55s ease;
+    z-index: 4;
+  }
+
+  .big-envelope.is-open .big-envelope-flap {
+    transform: rotateX(180deg);
+    opacity: 0.35;
+  }
+
+  .big-envelope-seal {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--accent-deep);
+    border: 5px solid var(--paper-alt);
+    box-shadow: 0 4px 12px rgba(74, 52, 56, 0.18);
+    z-index: 6;
+    transition: opacity 0.4s ease, transform 0.6s ease;
+  }
+
+  .big-envelope-seal svg {
+    width: 25px;
+    height: 25px;
+    fill: var(--paper);
+  }
+
+  .big-envelope.is-open .big-envelope-seal {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.75);
+  }
+
+  .big-envelope-label {
+    position: absolute;
+    left: 50%;
+    bottom: 17%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-family: var(--font-display);
+    font-size: clamp(18px, 3vw, 27px);
+    font-weight: 600;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .entrance-hint {
+    margin-top: 20px;
+    font-family: var(--font-ui);
+    font-size: 12px;
+    color: var(--ink-soft);
+    opacity: 0;
+    transition: opacity 0.7s ease 0.25s;
+  }
+
+  .entrance-overlay.is-ready .entrance-hint { opacity: 1; }
+
+  .intro-card {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: min(88vw, 700px);
+    max-height: 78vh;
+    overflow: auto;
+    transform: translate(-50%, -46%) scale(0.96);
+    padding: clamp(28px, 6vw, 58px);
+    background: var(--paper-white);
+    border: 1px solid var(--line);
+    box-shadow: 0 24px 80px rgba(74, 52, 56, 0.16);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.65s ease, transform 0.65s ease, visibility 0.65s ease;
+    text-align: left;
+  }
+
+  .intro-card.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .intro-kicker {
+    font-family: var(--font-ui);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 26px;
+  }
+
+  .typewriter-text {
+    font-family: var(--font-body);
+    font-size: clamp(17px, 2.3vw, 21px);
+    line-height: 1.9;
+    color: var(--ink);
+    white-space: pre-wrap;
+    min-height: 9em;
+  }
+
+  .typewriter-text::after {
+    content: "";
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    margin-left: 3px;
+    vertical-align: -0.12em;
+    background: var(--accent);
+    animation: cursorBlink 0.8s steps(1) infinite;
+  }
+
+  .intro-signature {
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line-soft);
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-style: italic;
+    color: var(--accent-deep);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .intro-signature.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .intro-enter {
+    margin-top: 28px;
+    padding: 10px 18px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-soft);
+    font-family: var(--font-ui);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .intro-enter.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .intro-enter:hover,
+  .intro-enter:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent-deep);
+  }
+
+  @keyframes cursorBlink {
+    0%, 45% { opacity: 1; }
+    46%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 640px) {
+    .big-envelope-wrap { width: 88vw; }
+    .big-envelope-label { bottom: 15%; }
+    .intro-card { width: 90vw; }
+  }
+
   @media (max-width: 640px) {
     header.nav { padding: 14px 5vw; }
     nav.nav-links { gap: 16px; font-size: 11px; }
@@ -375,7 +652,33 @@
   }
 </style>
 </head>
-<body>
+<body class="entrance-active">
+
+<div class="entrance-overlay" id="entrance-overlay" aria-modal="true" role="dialog" aria-label="A sealed letter">
+  <div class="entrance-stage">
+    <p class="entrance-note">A little something for the very special guy that go by the most beautiful name I've ever heard</p>
+
+    <div class="big-envelope-wrap">
+      <button class="big-envelope" id="big-envelope" type="button" aria-label="Open the sealed envelope">
+        <span class="big-envelope-flap" aria-hidden="true"></span>
+        <span class="big-envelope-seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>
+        </span>
+        <span class="big-envelope-label">For my beloved</span>
+      </button>
+    </div>
+
+    <p class="entrance-hint">click the envelope to open</p>
+  </div>
+
+  <div class="intro-card" id="intro-card" aria-live="polite">
+    <div class="intro-kicker">A note before everything else</div>
+    <div class="typewriter-text" id="typewriter-text"></div>
+    <div class="intro-signature" id="intro-signature"></div>
+    <button class="intro-enter" id="intro-enter" type="button">Enter</button>
+  </div>
+</div>
+
 
 <a href="#main" class="skip-link">Diretso i2 dapat sa content test test test</a>
 
@@ -422,7 +725,13 @@
     navTitle: "For my beloved",
     heroTitle: "Don Samuel",
     epigraph: "a quiet place for the words I write and never send.",
-    lastUpdated: "August 2026"
+    lastUpdated: "August 2026",
+
+    // ===== EDIT YOUR ENTRANCE MESSAGE HERE =====
+    introMessage: `Hi, my beloved.
+
+I made this little corner of the internet for the words I could never quite say out loud. Take your time here. Read whatever you want, stay as long as you like, and know that every word was written with you in mind.`,
+    introSignature: "— Sam"
   };
 
   const poems = [
@@ -1085,6 +1394,63 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
   document.title = siteConfig.heroTitle;
 
   const heartSvg = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>';
+
+
+  const entranceOverlay = document.getElementById("entrance-overlay");
+  const bigEnvelope = document.getElementById("big-envelope");
+  const introCard = document.getElementById("intro-card");
+  const typewriterText = document.getElementById("typewriter-text");
+  const introSignature = document.getElementById("intro-signature");
+  const introEnter = document.getElementById("intro-enter");
+
+
+  window.setTimeout(function () {
+    entranceOverlay.classList.add("is-ready");
+  }, 650);
+
+  function startTypewriter(text, speed) {
+    typewriterText.textContent = "";
+    introSignature.classList.remove("show");
+    introEnter.classList.remove("show");
+
+    let index = 0;
+
+    function typeNext() {
+      if (index < text.length) {
+        typewriterText.textContent += text.charAt(index);
+        index += 1;
+        window.setTimeout(typeNext, speed);
+      } else {
+        introSignature.textContent = siteConfig.introSignature;
+        introSignature.classList.add("show");
+        window.setTimeout(function () {
+          introEnter.classList.add("show");
+        }, 450);
+      }
+    }
+
+    typeNext();
+  }
+
+  bigEnvelope.addEventListener("click", function () {
+    if (bigEnvelope.classList.contains("is-open")) return;
+
+    bigEnvelope.classList.add("is-open");
+
+    
+    window.setTimeout(function () {
+      introCard.classList.add("is-visible");
+      startTypewriter(siteConfig.introMessage, 34);
+    }, 720);
+  });
+
+  introEnter.addEventListener("click", function () {
+    entranceOverlay.classList.add("is-leaving");
+    document.body.classList.remove("entrance-active");
+    window.setTimeout(function () {
+      entranceOverlay.remove();
+    }, 750);
+  });
 
   function renderEntries(list, containerId, isLetter) {
     const container = document.getElementById(containerId);
