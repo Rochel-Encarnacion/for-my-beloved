@@ -366,46 +366,18 @@
     color: var(--accent-deep);
   }
 
-  /* ===== ENTRANCE: keep the sealed-letter experience above the whole site ===== */
-  html:has(body.entrance-active) {
-    overflow: hidden;
-  }
-
-  body.entrance-active {
-    overflow: hidden !important;
-    height: 100vh;
-    min-height: 100vh;
-  }
-
-  /* While the entrance is active, hide the actual website underneath it.
-     This prevents the nav, hero, skip-link, etc. from showing through. */
-  body.entrance-active > *:not(.entrance-overlay) {
-    visibility: hidden !important;
-    pointer-events: none !important;
-  }
+  body.entrance-active { overflow: hidden; }
 
   .entrance-overlay {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    min-height: 100dvh;
-    z-index: 2147483647 !important;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
     display: grid;
     place-items: center;
-    overflow: hidden;
-    isolation: isolate;
     background: var(--paper);
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
     transition: opacity 0.7s ease, visibility 0.7s ease;
-  }
-
-  .entrance-overlay.is-leaving {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
   }
 
   .entrance-overlay.is-leaving {
@@ -562,9 +534,8 @@
   .entrance-overlay.is-ready .entrance-hint { opacity: 1; }
 
   .intro-card {
-    position: fixed !important;
+    position: absolute;
     inset: 50% auto auto 50%;
-    z-index: 2;
     width: min(88vw, 700px);
     max-height: 78vh;
     overflow: auto;
@@ -685,7 +656,7 @@
 
 <div class="entrance-overlay" id="entrance-overlay" aria-modal="true" role="dialog" aria-label="A sealed letter">
   <div class="entrance-stage">
-    <p class="entrance-note">A little something for the very special guy that go by the most beautiful name I've ever heard, Don Samuel D. Anico</p>
+    <p class="entrance-note">A little something for the very special guy that go by the most beautiful name I've ever heard</p>
 
     <div class="big-envelope-wrap">
       <button class="big-envelope" id="big-envelope" type="button" aria-label="Open the sealed envelope">
@@ -696,7 +667,9 @@
         <span class="big-envelope-label">For my beloved</span>
       </button>
     </div>
-  
+
+    <p class="entrance-hint">basahin mo please please please by sabrina carpenter</p>
+  </div>
 
   <div class="intro-card" id="intro-card" aria-live="polite">
     <div class="intro-kicker">A note before everything else</div>
@@ -754,10 +727,11 @@
     epigraph: "a quiet place for the words I write and never send.",
     lastUpdated: "August 2026",
 
+    
     introMessage: `Hi, my beloved.
 
-I made this little corner of the internet for the words I could never quite say out loud. I hope you know that every words written here was beuatifully woven with you in mind. Everything and anything, for you, always in all ways`,
-    introSignature: "— Chel"
+I made this little corner of the internet for the words I could never quite say out loud. I hope you know that every words written here was beautifully woven with you in mind. Everything and anything, for you, always in all ways.`,
+    introSignature: "With all the love and admiration, Chel"
   };
 
   const poems = [
