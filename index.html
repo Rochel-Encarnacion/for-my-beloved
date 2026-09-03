@@ -6,6 +6,20 @@
 <title>For my beloved</title>
 
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap");
+
+.footer-message {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-family: "Caveat", cursive;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  padding: 10px 20px;
+}
+
   :root {
     --paper: #f5f2ec;
     --paper-alt: #efeade;
@@ -69,10 +83,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 18px 6vw;
-    background: rgba(245, 242, 236, 0.88);
+    padding: 18px 6vw 24px;
+    background-color: rgba(245, 242, 236, 0.88);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4' fill='none' stroke='%23ddd2c2' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom left;
+    background-size: 20px 8px;
     backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--line);
   }
 
   .nav-name {
@@ -215,6 +232,7 @@
     border: 1px solid var(--line);
     cursor: pointer;
     overflow: hidden;
+    box-shadow: 0 3px 8px rgba(74, 52, 56, 0.1), 0 1px 2px rgba(74, 52, 56, 0.08);
     transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
   }
   .envelope-summary::-webkit-details-marker { display: none; }
@@ -222,8 +240,8 @@
   .envelope-summary:hover,
   .envelope-summary:focus-visible {
     border-color: var(--accent);
-    box-shadow: 0 4px 14px rgba(74, 52, 56, 0.12);
-    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(74, 52, 56, 0.16), 0 3px 8px rgba(74, 52, 56, 0.1);
+    transform: translateY(-3px);
   }
 
   .envelope-flap {
@@ -367,8 +385,11 @@
   }
 
   footer {
-    padding: 5vw 6vw 6vw;
-    border-top: 1px solid var(--line);
+    padding: calc(5vw + 10px) 6vw 6vw;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='8'%3E%3Cpath d='M0 4 Q5 0 10 4 T20 4' fill='none' stroke='%23ddd2c2' stroke-width='1.2'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: top left;
+    background-size: 20px 8px;
     font-family: var(--font-ui);
     font-size: 13px;
     color: var(--ink-soft);
@@ -555,7 +576,7 @@
     transform: translate(-50%, -46%) scale(0.96);
     padding: clamp(28px, 6vw, 58px);
     background: var(--paper-white);
-    border: 1px solid var(--line);
+    border: 5px double var(--accent);
     box-shadow: 0 24px 80px rgba(74, 52, 56, 0.16);
     opacity: 0;
     visibility: hidden;
@@ -795,11 +816,11 @@
     <h2 class="section-title">Para sa mga salitang isinulat ng damdamin</h2>
     <div class="entries-grid" id="letters-list"></div>
   </section>
+
 </main>
 
 <footer>
-  <span id="last-updated">Last updated: August 2026</span>
-  <button id="back-to-top" class="pixel-btn">Back to top ↑</button>
+  <span class="footer-message">Mga habi ng damdaming pinagtagpi-tagpi ng mga letrang bumubuo sa salitang mahal kita</span>
 </footer>
 
 <script>
@@ -1470,6 +1491,165 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
       body: ` Ang tagal kong nawala wth huhu paano naman kasi teh sobrang daming nangyari muntik na akong bumagsak sa Chemistry for Engineers, jusko dzai.
       Alam mo na-appreciate ko ng husto support niya sa true lang. Kahit na nanganganib ako pinapagaan niya pa rin loob ko. Kaya ko to, salamat, palagi, sam.
  `    
+    },
+    { 
+      title: "41",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Subukan ko na kayang mag confess? or mag send muna ako ng mga hints na may crush ako ganom WHAHAHAHAAH omg wth idk what to do, natatakot ako e
+      natatakot ako na baka lumayo siya tapos masira friendship namin :< 
+ `    
+    },
+    { 
+      title: "42",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Alam niyo nakakapagod pero bakit ganon kapag nandiyan siya gumagaan ang lahat, kung papalarin ako kamay niya ang gusto kong hawakan palagi at lagi.
+ `    
+    },
+    { 
+      title: "43",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Nasabi ko na bang nagawaan ko na siya ng tula? and many more to go. Sana alam niya kung gaano siya kagandang gawing literatura.
+      Hindi na sapat pa ang mga letra para buoin lahat ng mga magagandang salita na gusto kong sabihin sa kaniya
+ `    
+    },
+    { 
+      title: "44",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Nag confess na ako, ganda raw ng confession ko send ko na raw sa crush ko BWUAHAHAHHAHAH paano kung i-bump ko yan beh kaso di ko pa kaya e
+      hayaan mo, kapag kaya ko na, at kapag okay na ang lahat, ako mismo ang gagawa ng paraan para masabi ko yung mga nararamdaman ko para sayo
+ `    
+    },
+    { 
+      title: "45",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` ayun guys sobrang daming nangyari may crush siya sa isa namin hindi ko na papangalanan pero feel ko nacucute-an lang siya pero like gets ko rin bakit
+      siya nagka crush doon pero whatever happens, I will support him basta masaya siya, okay na ako, masaya na ko higit pa sa sobra.
+ `    
+    },
+    { 
+      title: "46",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Kailan kaya ako magkakaroon ng lakas ng loob na sabihin na matagal ko na siyang gusto? Kailan kaya ako magkakaroon ng lakas ng loob na 
+      ipabasa at ipakita sa kaniya yung mga tulang ginawa ko na siya ang paksa? 
+ `    
+    },
+    { 
+      title: "47",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Hindi ko alam pero ganito pala talaga may mga pagkakataong nakakapagod at may mga panahon din na walang kasiguraduhan ang lahat pero
+      isang bagay ang sigurado ako, siya pa rin ang pipiliin ko. 
+ `    
+    },
+    { 
+      title: "48",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Bumagsak siya sa isang subject, hindi ko alam kung paano ko pagagaanin ang loob niya. Sana alam niyang proud pa rin ako sa kaniya
+      kahit anong mangyari, proud pa rin ako sa kaniya. Naiinis ako sa sarili ko kasi wala ako sa tabi niya nung mga panahong yon pero siya
+      nung mga panahon na ako yung nag aalangan na bumagsak sa isang subject, sinamahan niya ako, nag intay siya kahit na dapat nagpapahinga siya at nag aaral nalang.
+      Bakit hindi ko nagawa sa kaniya yon? Bakit? Bakit wala ako kung kailan kailangan niya ng makikinig at dadamay sa kaniya? Babawi ako sa'yo, pangako.
+      Nandito lang ako palagi, Sam. Makakabawi at makakabawi ka, naniniwala ako sayo
+ `    
+    },
+    { 
+      title: "49",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Merry Christmas, Sam. Sobrang ganda ng taon ko dahil nakilala kita.
+      Hindi mo alam kung ilang beses mo akong niligtas, at hindi mo rin alam kung gaano mo ako pinasaya.
+      Sana sobrang maligaya ang pasko mo, wala akong ibang hiling kundi ang hayaan ako ng panginoon na makasama ka pa at mas makilala ka pa. 
+ `    
+    },
+    { 
+      title: "50",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Happy new year, Sam. Sana kasabay ng pagpapalit ng taon ay ang kasabay din ng unti-unting paghilom ng mga sugat mula sa nakaraan.
+      Maghihintay ako, hanggang kaya ko kasi kahit na magulo, kahit na nakakapagod, hinding-hindi kita iiwan. Dahil, Sam, nais kong iparamdam sayo
+      ang pag ibig na hahayaan kang maging ikaw at hahayaan kang matulog ng walang iniisip sa gabi. Manigong bagong taon, Sam!
+ `    
+    },
+    { 
+      title: "51",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Nag 2nd place kami sa Aribahan!!! Sobrang naninibago ako sa gupit niya pero HAHHAHAHA ang cute niya pa rin tignan. 
+ `    
+    },
+    { 
+      title: "52",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Happy Valentines Day, Sam! Sana magkalakas na ako ng loob na sabihin kung ano ba talagang nararamdaman ko sayo. 
+ `    
+    },
+    { 
+      title: "53",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Sam, hanggang ngayon nag iisip pa rin ako ng paraan kung paano sasabihin sayo yung nararamdaman ko sa paraang hindi ka mawawala
+      Handa akong kalimutan lahat ng nararamdaman ko kung kapalit naman nito ay ang mananatili ka sa buhay ko
+ `    
+    },
+    { 
+      title: "54",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Lord, I've been praying for someone like him a lot of times. Thank you kasi hinayaan mo akong mabuhay sa mundo kasabay ng buhay niya. Salamat.
+ `    
+    },
+    { 
+      title: "55",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Naiiyak ako kapag sinasabi niyang lilipat siya kasi bihira ko na siya makikita. Mamimiss ko yung lahat ng tawanan at yung mga study session namin sa elib.
+      pero kasabay nito ay ang pagkatupad din ng pangarap ko, yun ay ang makita siyang masaya. And if that dream of mine requires to not seeing him within the halls
+      of Natividad Hall and Coe 2, I will be happy. Ngayon pa lang, proud na ako sa kaniya.
+ `    
+    },
+    { 
+      title: "56",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Finals na, kinakabahan ako. Pero kaya to, kakayanin. 
+ `    
+    },
+    { 
+      title: "57",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Uy, ang ganda nito, Kalapastangan? Medyo may error sila dapat kalapastanganan pero poetic rights din kasi and mas maganda pakinggan
+      kapag kalapastangan gagamitin. Parang isinabuhay ng kantang to yung nararamdaman ko sa kaniya. Tunay ngang kalapastangan ang hindi siya ibigin
+ `    
+    },
+    { 
+      title: "58",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` And that's it, tapos na ang freshie year ko. Maraming salamat sa mga alaala. At salamat din sayo, Sam.
+ `    
+    },
+    { 
+      title: "59",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Mag eexam kami together sa FEU. Alam ko na agad na papasa siya, proud ako sayo palagi, Sam.
+ `    
+    },
+    { 
+      title: "60",
+      date: "From the Archives",
+      opening: "Dear Diary",
+      body: ` Nagkaroon na rin ako ng lakas ng loob na sabihin sa kaniya yung nararamdaman ko. Nababasa niya na rin mga tula ko.
+      Sobrang gaan sa pakiramdam. Maraming salamat, Sam. Salamat kasi walang nagbago, salamat kasi hindi ka nawala. Salamat, salamat.
+ `    
     }
   ];
 
@@ -1491,7 +1671,6 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
   }
   syncDividerWidth();
   document.getElementById("hero-sub").textContent = siteConfig.epigraph;
-  document.getElementById("last-updated").textContent = "Last Updated: " + siteConfig.lastUpdated;
   document.title = siteConfig.heroTitle;
 
   const heartSvg = '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-6.7-4.35-9.3-8.14C.5 9.7 1.9 6 5.4 6c1.9 0 3.3 1 4.6 2.7C11.3 7 12.7 6 14.6 6c3.5 0 4.9 3.7 2.7 6.86C18.7 16.65 12 21 12 21z"/></svg>';
@@ -1628,9 +1807,6 @@ Ikaw pa rin ang obra maestrang babalik-balikan ko.
   renderEntries(poems, "poems-list", false);
   renderEntries(letters, "letters-list", true);
 
-  document.getElementById("back-to-top").addEventListener("click", function () {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
