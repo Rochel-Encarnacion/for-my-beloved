@@ -1818,8 +1818,7 @@ Na ibinigay sakin ng Agosto.
         '<span class="envelope-flap" aria-hidden="true"></span>' +
         '<span class="envelope-seal" aria-hidden="true">' + heartSvg + '</span>' +
         '<span class="envelope-label">' +
-          '<span class="entry-date">' + (item.date || "") + '</span>' +
-          '<span class="envelope-hint">click to open</span>' +
+          '<span class="entry-date">' + (item.date || "") + '</span>' 
         '</span>';
       entry.appendChild(summary);
 
@@ -1871,22 +1870,6 @@ Na ibinigay sakin ng Agosto.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
-
-  <script>
-fetch("https://script.google.com/macros/s/AKfycbwM_SPfNEUWwxjNxhsyXEPUDPO3j_TULP8imfBHGW_Ycg1quwzoQxoLiPibw2GwBghOfg/exec", {
-    method: "POST",
-    body: new URLSearchParams({
-        response: "TEST — YES, YOU MAY"
-    })
-})
-.then(response => response.json())
-.then(data => {
-    console.log("Google Sheet response:", data);
-})
-.catch(error => {
-    console.error("Google Sheet error:", error);
-});
-</script>
 
 </body>
 </html>
